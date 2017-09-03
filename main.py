@@ -49,16 +49,23 @@ def GetFuzzyStr(inputStr, dis):
     AllHamDis = list(hamming_ball(inputStr, dis, alphabet))
     if dupli:
         AllHamDis.extend(list(hamming_ball(NDupli, dis, alphabet)))
-    for letter in vowels:
+    for letter in alphabet:
         counter+=1
         AllHamDis.append(str(inputStr + letter))
     if dupli:
-        for letter in vowels:
+        for letter in alphabet:
             counter+=1
             AllHamDis.append(str(NDupli + letter))
     for index in range((len(inputStr))):
         counter+=1
         AllHamDis.append(remove(inputStr, index))
+
+    for index in range((len(inputStr))):
+    	for letter in alphabet:
+    		List = []
+    		List.append(letter)
+    		List = inputStr[:index] + List[0] + inputStr[index:]
+    		AllHamDis.append(List)
 
     FinalArr = []
     for Search in AllHamDis:
@@ -88,7 +95,12 @@ def main(TargetName, SearchLen):
     for Search in FuzzySearches:
         if Search in PeopleSet:
             print(Search + " : " + TargetName)
-    print("# of Fuzzy Strings: " + str(len(FuzzySearches)))
+    print("# of Fuzzy Strings Found: " + str(len(FuzzySearches)))
     print(str(counter) + " operations done!")
+    print('\n')
 
-main('ramenyanye', 1)
+main('akash',1)
+main('varun',1)
+#main('rajb', 2)
+#main('raj', 2)
+#main('rajj', 2)
